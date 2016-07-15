@@ -4,7 +4,10 @@
         https://github.com/mvillalba/python-ant/blob/develop/demos/ant.core/03-basicchannel.py
     in the python-ant repository and
         https://github.com/tomwardill/developerhealth
-    by Tom Wardill
+    by Tom Wardill and 
+    	https://github.com/haotianwooo/ant_raspberry/blob/master/only_cadence.py
+    by haotianwooo
+    
 """
 
 
