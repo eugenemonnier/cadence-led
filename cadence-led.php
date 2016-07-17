@@ -21,7 +21,8 @@ numLeds = 50
 driver = DriverLPD8806(numLeds, c_order = ChannelOrder.BRG, use_py_spi = True, SPISpeed = 8 )
 led = LEDStrip(driver)
 lightspeed = 30
-
+brightness = 255 #100-255
+speedfactor = 0.5
 
 class ColorChase(BaseStripAnim):
     """Chase one pixel down the strip."""
@@ -167,36 +168,36 @@ while True:
             
             # set colours
             if lightspeed < 31:
-                ledr = 255
+                ledr = brightness
                 ledg = 0
                 ledb = 0
-            elif lightspeed < 41:
-                ledr = 255
-                ledg = int((lightspeed/41) * 255)
+            elif lightspeed < 35:
+                ledr = brightness
+                ledg = int((lightspeed/35) * brightness)
                 ledb = 0
-            elif lightspeed < 70:
-                ledr = int((1-(lightspeed/70))*255)
-                ledg = 255
+            elif lightspeed < 45:
+                ledr = int((1-(lightspeed/45))*brightness)
+                ledg = brightness
                 ledb = 0
-            elif lightspeed < 100:
+            elif lightspeed < 80:
                 ledr = 0
-                ledg = 255
-                ledb = int((lightspeed/100) * 255)
+                ledg = brightness
+                ledb = int((lightspeed/80) * brightness)
             elif lightspeed < 110:
-                ledr = int((lightspeed/110) * 255)
-                ledg = 255
-                ledb = 255
+                ledr = int((lightspeed/110) * brightness)
+                ledg = brightness
+                ledb = brightness
             else:
-                ledr = 255
-                ledg = 255
-                ledb = 255
+                ledr = brightness
+                ledg = brightness
+                ledb = brightness
             
             print "ledr:"+str(ledr)              
             print "ledg:"+str(ledg)             
             print "ledb:"+str(ledb) 
                         
             if hrm.cadence<>0:
-                hrm.ledspeed = int((1000/lightspeed))
+                hrm.ledspeed = int((1000/(lightspeed*speedfactor)))
                 anim._internalDelay = (hrm.ledspeed)
                 anim._color = (ledr,ledg,ledb)
                 print "ledspeed:"+str(hrm.ledspeed) 
